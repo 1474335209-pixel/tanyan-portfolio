@@ -1,0 +1,2737 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>谭焱 / 千音 | 文化创意策划复合人才 · 作品集</title>
+  <meta name="description" content="谭焱（千音）文化创意策划复合型人才作品集：品牌策略、文化叙事、视觉设计、文案写作、诗歌与音乐创作、AI 视觉工作流，从洞察到落地的全链路创意能力。">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <script src="content/poems-v2.js"></script>
+  <style>
+    :root {
+      --paper: #fafaf8;
+      --ink: #0a0a0a;
+      --muted: #737373;
+      --line: #d4d4d2;
+      --soft: #f0f0ee;
+      --accent: #c5e803;
+      --max: 1500px;
+      --pad: clamp(18px, 4vw, 72px);
+      --sans: Inter, Helvetica, "Microsoft YaHei UI", "Noto Sans SC", Arial, sans-serif;
+      --mono: "Roboto Mono", "SFMono-Regular", Consolas, monospace;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--sans);
+      line-height: 1.55;
+      letter-spacing: 0;
+    }
+    body.loading-lock { cursor: progress; }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; }
+
+    .site-grid {
+      width: min(100%, var(--max));
+      margin: 0 auto;
+      padding-left: var(--pad);
+      padding-right: var(--pad);
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      border-bottom: 1px solid var(--line);
+      background: rgba(250, 250, 248, 0.95);
+    }
+
+    .topbar-inner {
+      min-height: 68px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .brand-mark {
+      display: inline-grid;
+      grid-template-columns: 38px auto;
+      gap: 12px;
+      align-items: center;
+      font-family: var(--mono);
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .avatar {
+      width: 38px;
+      height: 38px;
+      border: 1px solid var(--ink);
+      object-fit: cover;
+      object-position: 54% 34%;
+      filter: grayscale(100%) contrast(1.08);
+    }
+
+    .nav {
+      display: flex;
+      gap: clamp(12px, 2vw, 28px);
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .nav a { border-bottom: 1px solid transparent; }
+    .nav a:hover { border-color: var(--ink); }
+
+    .hero {
+      min-height: auto;
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: clamp(18px, 2.8vw, 42px);
+      padding-top: clamp(28px, 4.2vw, 64px);
+      padding-bottom: clamp(30px, 4.8vw, 72px);
+      position: relative;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0 var(--pad);
+      pointer-events: none;
+      background-image:
+        linear-gradient(to right, rgba(10,10,10,.13) 1px, transparent 1px);
+      background-size: calc(100% / 12) 100%;
+      opacity: .65;
+    }
+
+    h1, h2, h3, p { margin: 0; }
+
+    .hero-main {
+      grid-column: 1 / span 7;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: clamp(34px, 4.5vw, 64px);
+      min-height: clamp(520px, 56vh, 660px);
+    }
+
+    .hero-panel {
+      grid-column: 8 / span 5;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(3, minmax(150px, 1fr));
+      border-top: 1px solid var(--ink);
+      border-left: 1px solid var(--ink);
+      background: var(--paper);
+    }
+
+    .tile {
+      border-right: 1px solid var(--ink);
+      border-bottom: 1px solid var(--ink);
+      padding: 16px;
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      background: var(--paper);
+    }
+
+    .tile.accent { background: var(--accent); color: var(--ink); }
+    .tile.ink { background: var(--ink); color: var(--paper); }
+    .tile.soft { background: var(--soft); }
+    .tile.big {
+      font-family: var(--sans);
+      font-size: clamp(44px, 6vw, 86px);
+      font-weight: 200;
+      line-height: .98;
+      text-transform: none;
+      align-items: center;
+    }
+    .tile.vertical { writing-mode: vertical-rl; text-orientation: mixed; }
+    .tile.s1 { grid-column: 1; grid-row: 1; }
+    .tile.s2 {
+      grid-column: 2;
+      grid-row: 1;
+      font-size: 14px;
+      line-height: 1.5;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      align-items: stretch;
+    }
+    .tile.s3 { grid-column: 1; grid-row: 2; }
+    .tile.s4 { display: none; }
+    .tile.s5 {
+      grid-column: 2;
+      grid-row: 2;
+      font-family: var(--sans);
+      font-size: clamp(28px, 3vw, 46px);
+      font-weight: 300;
+      line-height: 1.08;
+      text-transform: none;
+      align-items: flex-end;
+    }
+    .tile.s6 { grid-column: 2; grid-row: 3; }
+    .tile.s7 {
+      grid-column: 1;
+      grid-row: 3;
+      background: var(--accent);
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      align-items: stretch;
+      color: var(--ink);
+    }
+
+    .tile.s3 {
+      position: relative;
+    }
+
+    .tile.s3::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: 22%;
+      width: 1px;
+      background: var(--ink);
+      opacity: .45;
+    }
+
+    .tile-note {
+      align-self: start;
+      font-family: var(--mono);
+      font-size: 11px;
+      line-height: 1.45;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .tile-note.center {
+      align-self: center;
+      font-size: clamp(16px, 1.25vw, 22px);
+      line-height: 1.6;
+      font-family: var(--sans);
+      font-weight: 400;
+      text-transform: none;
+    }
+
+    .tile-note.bottom {
+      align-self: end;
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      border-top: 1px solid rgba(10,10,10,.45);
+      padding-top: 10px;
+    }
+
+    .photo-tile {
+      position: relative;
+      padding: 0;
+      overflow: hidden;
+      background: var(--ink);
+    }
+
+    .photo-tile::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(to bottom, rgba(10,10,10,.04), rgba(10,10,10,.18));
+      opacity: 1;
+      z-index: 1;
+    }
+
+    .photo-tile::after {
+      content: "Tan Yan";
+      position: absolute;
+      left: 14px;
+      top: 14px;
+      z-index: 2;
+      color: var(--paper);
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .photo-tile img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 53% 34%;
+      display: block;
+      filter: grayscale(100%) contrast(1.18);
+      transform: scale(1.08);
+    }
+
+    .text-tile {
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    .text-tile .tile-note.center {
+      font-size: clamp(15px, 1.1vw, 20px);
+      letter-spacing: .04em;
+    }
+    .text-tile .tile-note.bottom {
+      margin-top: auto;
+      white-space: nowrap;
+      font-size: 12px;
+      justify-content: flex-start;
+    }
+
+    .kicker {
+      font-family: var(--mono);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin-top: 18px;
+      font-size: clamp(24px, 3.2vw, 46px);
+      line-height: 1;
+      font-weight: 300;
+      max-width: none;
+    }
+
+    .manifesto {
+      margin-top: 28px;
+      max-width: 840px;
+      font-size: clamp(44px, 7.1vw, 108px);
+      line-height: .98;
+      font-weight: 200;
+    }
+
+    .manifesto span {
+      display: block;
+      white-space: nowrap;
+    }
+
+    .manifesto span + span {
+      margin-top: .12em;
+    }
+
+    .hero-lead {
+      max-width: 790px;
+      font-size: clamp(22px, 3vw, 42px);
+      line-height: 1.18;
+      font-weight: 300;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .button,
+    .chip {
+      min-height: 46px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--ink);
+      background: var(--ink);
+      color: var(--paper);
+      padding: 0 18px;
+      font-family: var(--mono);
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+
+    .button.accent,
+    .chip.active {
+      background: var(--accent);
+      color: var(--ink);
+    }
+
+    .button.secondary,
+    .chip {
+      background: var(--paper);
+      color: var(--ink);
+    }
+
+    .section {
+      border-top: 1px solid var(--ink);
+      padding-top: clamp(50px, 7vw, 104px);
+      padding-bottom: clamp(56px, 8vw, 120px);
+    }
+
+    .film-strip {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: clamp(18px, 2.8vw, 42px);
+      align-items: stretch;
+      border-top: 1px solid var(--line);
+      padding-top: clamp(28px, 4vw, 56px);
+      margin-top: clamp(34px, 5vw, 72px);
+    }
+
+    .film-image {
+      grid-column: 1 / span 8;
+      border: 1px solid var(--ink);
+      overflow: hidden;
+      background: var(--soft);
+      position: relative;
+    }
+
+    .film-image img {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      display: block;
+      filter: grayscale(100%) contrast(1.05);
+    }
+
+    .music-video {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      display: block;
+      object-fit: cover;
+      background: var(--ink);
+    }
+
+    .music-stage {
+      background: var(--ink);
+      display: grid;
+      grid-template-rows: auto 1fr;
+    }
+
+    .music-underbar {
+      display: grid;
+      grid-template-columns: 1fr 1.25fr;
+      gap: 16px;
+      align-items: end;
+      border-top: 1px solid var(--ink);
+      padding: 18px 20px;
+      background: var(--ink);
+      color: var(--paper);
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .music-underbar p {
+      margin: 0;
+      max-width: 38em;
+      color: #d8d8d8;
+      font-family: var(--sans);
+      font-size: 14px;
+      line-height: 1.55;
+      font-weight: 400;
+      text-transform: none;
+    }
+
+    .music-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      align-items: center;
+    }
+
+    .music-tags span {
+      border: 1px solid rgba(250,250,248,.55);
+      padding: 4px 7px;
+      color: var(--paper);
+      font-size: 10px;
+      line-height: 1;
+    }
+
+    .music-underbar strong {
+      display: block;
+      margin-bottom: 4px;
+      font-family: var(--sans);
+      font-size: clamp(24px, 2.4vw, 36px);
+      line-height: 1;
+      font-weight: 300;
+      text-transform: none;
+    }
+
+    .music-underbar span {
+      color: #cfcfcf;
+    }
+
+    .music-underbar em {
+      display: none;
+    }
+
+    .music-list {
+      display: grid;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .music-strip .film-note {
+      grid-template-rows: auto 1fr;
+      min-height: 0;
+      align-self: stretch;
+    }
+
+    .music-strip .film-title-slot {
+      min-height: 126px;
+    }
+
+    .music-strip .film-copy {
+      padding-top: 18px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .music-strip .music-list {
+      margin-top: 14px;
+      flex: 1;
+      align-content: space-between;
+    }
+
+    .music-track {
+      border-top: 1px solid var(--line);
+      padding-top: 12px;
+    }
+
+    .music-track strong {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 17px;
+      line-height: 1.35;
+      font-weight: 600;
+    }
+
+    .music-track audio {
+      width: 100%;
+      height: 36px;
+      display: block;
+    }
+
+    .film-carousel {
+      position: relative;
+      min-height: 100%;
+    }
+
+    .film-image img.film-slide {
+      display: none;
+      margin: 0;
+    }
+
+    .film-image img.film-slide.active {
+      display: block;
+      animation: filmIn 620ms ease both;
+    }
+
+    @keyframes filmIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .film-controls {
+      position: absolute;
+      left: 14px;
+      bottom: 14px;
+      display: flex;
+      gap: 8px;
+      z-index: 2;
+    }
+
+    .film-dot {
+      min-width: 40px;
+      height: 36px;
+      border: 1px solid var(--ink);
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--mono);
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .film-dot.active {
+      background: var(--accent);
+    }
+
+    .film-note {
+      grid-column: 9 / span 4;
+      border: 1px solid var(--ink);
+      display: grid;
+      grid-template-rows: 1fr auto;
+      min-height: 100%;
+      background: var(--paper);
+    }
+
+    .film-title-slot {
+      border-bottom: 1px solid var(--ink);
+      padding: clamp(16px, 2vw, 28px);
+      display: flex;
+      align-items: flex-start;
+      justify-content: flex-start;
+      text-align: left;
+      font-size: clamp(38px, 5vw, 80px);
+      line-height: .9;
+      font-weight: 200;
+    }
+
+    .film-title-slot.one-line {
+      white-space: nowrap;
+      align-items: center;
+      font-size: clamp(34px, 3.6vw, 58px);
+    }
+
+    .film-copy {
+      padding: clamp(16px, 2vw, 24px);
+    }
+
+    .film-note h3 {
+      font-size: clamp(24px, 3vw, 42px);
+      line-height: 1.05;
+      font-weight: 300;
+      margin-bottom: 14px;
+    }
+
+    .film-note p {
+      color: var(--muted);
+      font-size: 17px;
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: clamp(18px, 2.8vw, 42px);
+      margin-bottom: clamp(34px, 5vw, 72px);
+      align-items: start;
+    }
+
+    .section-num {
+      grid-column: 1 / span 2;
+      font-family: var(--mono);
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+
+    .section-title {
+      grid-column: 3 / span 6;
+      font-size: clamp(28px, 3.9vw, 56px);
+      line-height: 1.12;
+      font-weight: 300;
+    }
+
+    .section-note {
+      grid-column: 9 / span 4;
+      font-size: clamp(18px, 1.65vw, 24px);
+      line-height: 1.45;
+      color: var(--muted);
+      padding-top: 8px;
+    }
+
+    .process {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      border-top: 1px solid var(--line);
+      border-left: 1px solid var(--line);
+    }
+
+    .process-step {
+      min-height: 230px;
+      padding: 22px;
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      display: grid;
+      grid-template-rows: 28px minmax(84px, auto) 1fr;
+      gap: 18px;
+      align-items: start;
+      background: var(--paper);
+    }
+
+    .process-step strong {
+      max-width: 8em;
+      font-size: clamp(28px, 2.25vw, 36px);
+      line-height: 1.08;
+      font-weight: 300;
+      letter-spacing: 0;
+    }
+
+    .process-step p {
+      max-width: 13em;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.55;
+    }
+
+    .viewer {
+      display: grid;
+      grid-template-columns: 360px minmax(0, 1fr);
+      gap: 0;
+      border: 1px solid var(--ink);
+      background: var(--paper);
+      min-height: 72vh;
+    }
+
+    .viewer-side {
+      border-right: 1px solid var(--ink);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .project-tabs {
+      display: grid;
+      grid-template-columns: 1fr;
+      border-bottom: 1px solid var(--ink);
+    }
+
+    .project-tab {
+      min-height: 78px;
+      padding: 14px 18px;
+      border: 0;
+      border-bottom: 1px solid var(--line);
+      background: var(--paper);
+      color: var(--ink);
+      text-align: left;
+      cursor: pointer;
+    }
+
+    .project-tab.active {
+      background: var(--accent);
+    }
+
+    .project-tab span {
+      display: block;
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-bottom: 5px;
+    }
+
+    .project-tab.active span { color: var(--ink); }
+    .project-tab strong {
+      display: block;
+      font-size: 18px;
+      line-height: 1.25;
+      font-weight: 500;
+    }
+
+    .viewer-meta {
+      padding: 20px;
+      margin-top: auto;
+      border-top: 1px solid var(--ink);
+    }
+
+    .viewer-meta h3 {
+      font-size: clamp(26px, 2.8vw, 42px);
+      line-height: 1.05;
+      font-weight: 300;
+      margin-bottom: 12px;
+    }
+
+    .viewer-meta p {
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    .viewer-main {
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      background: var(--soft);
+    }
+
+    .viewer-toolbar {
+      min-height: 64px;
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--ink);
+      background: var(--paper);
+    }
+
+    .viewer-toolbar .group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .page-btn {
+      min-width: 44px;
+      min-height: 38px;
+      border: 1px solid var(--ink);
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .page-btn.active { background: var(--accent); }
+
+    .page-ellipsis {
+      min-width: 24px;
+      text-align: center;
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--muted);
+    }
+
+    .canvas-wrap {
+      flex: 1;
+      overflow: auto;
+      padding: clamp(18px, 3vw, 42px);
+      display: grid;
+      place-items: start center;
+    }
+
+    canvas {
+      max-width: 100%;
+      height: auto !important;
+      background: white;
+      border: 1px solid var(--line);
+    }
+
+    .render-state {
+      min-height: 40px;
+      color: var(--muted);
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 0 16px 16px;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      border-top: 1px solid var(--line);
+      border-left: 1px solid var(--line);
+    }
+
+    .service-card {
+      grid-column: span 6;
+      min-height: 240px;
+      padding: clamp(24px, 3vw, 40px);
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 18px;
+      background: var(--paper);
+      transition: background 300ms ease, transform 300ms ease;
+    }
+    .service-card.accent { background: var(--accent); }
+    .service-card:hover { transform: translateY(-3px); }
+    .service-card h3 {
+      font-size: clamp(26px, 3vw, 40px);
+      line-height: 1.05;
+      font-weight: 300;
+    }
+    .service-card p {
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.55;
+    }
+    .service-card.accent p { color: var(--ink); }
+
+    .project-card-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      border-top: 1px solid var(--line);
+      border-left: 1px solid var(--line);
+    }
+
+    .project-card {
+      grid-column: span 6;
+      min-height: 220px;
+      padding: clamp(22px, 2.8vw, 36px);
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 16px;
+      background: var(--paper);
+      color: inherit;
+      transition: background 300ms ease, transform 300ms ease;
+    }
+    .project-card:hover {
+      background: var(--accent);
+      transform: translateY(-3px);
+    }
+    .project-card .pc-code {
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+    .project-card:hover .pc-code { color: var(--ink); }
+    .project-card h3 {
+      font-size: clamp(22px, 2.4vw, 32px);
+      line-height: 1.15;
+      font-weight: 300;
+    }
+    .project-card p {
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.5;
+    }
+    .project-card:hover p { color: var(--ink); }
+    .project-card .pc-arrow {
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--muted);
+      text-transform: uppercase;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .project-card:hover .pc-arrow { color: var(--ink); }
+    .copy-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .copy-card {
+      padding: 28px;
+      border: 1px solid var(--line);
+      background: var(--paper);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      color: inherit;
+    }
+    .copy-card .pc-arrow {
+      margin-top: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+      color: var(--muted);
+      transition: color 0.2s ease;
+    }
+    .copy-card:hover .pc-arrow {
+      color: var(--ink);
+    }
+    .copy-card:hover {
+      background: rgba(197, 232, 3, 0.08);
+      border-color: var(--ink);
+    }
+    .copy-card h3 {
+      font-size: 28px;
+      font-weight: 300;
+      line-height: 1.2;
+    }
+    .copy-desc {
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.6;
+    }
+    .copy-excerpt {
+      margin: 0;
+      padding: 16px;
+      border-left: 3px solid var(--accent);
+      background: rgba(197, 232, 3, 0.06);
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--ink);
+      font-style: italic;
+    }
+    .copy-read-more {
+      font-size: 13px;
+      color: var(--muted);
+      transition: color 0.2s ease;
+    }
+    .copy-card:hover .copy-read-more {
+      color: var(--ink);
+    }
+    .copy-reader {
+      display: none;
+      margin-top: 48px;
+      padding: 40px;
+      border: 1px solid var(--line);
+      background: var(--paper);
+    }
+    .copy-reader.active {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 40px;
+    }
+    .copy-reader-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .copy-reader-meta h3 {
+      font-size: 28px;
+      font-weight: 300;
+      line-height: 1.2;
+    }
+    .copy-close {
+      align-self: flex-start;
+      padding: 8px 16px;
+      border: 1px solid var(--line);
+      background: transparent;
+      font-size: 13px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .copy-close:hover {
+      background: var(--ink);
+      color: var(--paper);
+    }
+    .copy-reader-text {
+      max-height: 600px;
+      overflow-y: auto;
+      padding-right: 20px;
+      font-size: 15px;
+      line-height: 1.8;
+      color: var(--ink);
+      white-space: pre-wrap;
+    }
+    .mark-grid {
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      border-top: 1px solid var(--line);
+      border-left: 1px solid var(--line);
+      overflow: hidden;
+    }
+
+    .mark-card {
+      appearance: none;
+      color: inherit;
+      text-align: left;
+      grid-column: span 6;
+      min-height: 300px;
+      padding: clamp(24px, 3vw, 42px);
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      border-top: 0;
+      border-left: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background: var(--paper);
+      cursor: pointer;
+    }
+
+    .mark-card.accent { background: var(--accent); }
+    .mark-card:hover { outline: 2px solid var(--ink); outline-offset: -2px; }
+    .mark-card h3 {
+      font-size: clamp(30px, 4vw, 60px);
+      line-height: 1;
+      font-weight: 250;
+    }
+    .mark-card p {
+      max-width: 540px;
+      color: var(--muted);
+      font-size: 17px;
+    }
+    .mark-card.accent p { color: var(--ink); }
+
+    .case-viewer {
+      display: none;
+      border: 1px solid var(--ink);
+      border-top: 0;
+      background: var(--paper);
+    }
+
+    .case-viewer.active {
+      display: grid;
+      grid-template-columns: 320px minmax(0, 1fr);
+    }
+
+    .case-info {
+      border-right: 1px solid var(--ink);
+      padding: 24px;
+    }
+
+    .case-info h3 {
+      font-size: clamp(26px, 3vw, 42px);
+      line-height: 1.05;
+      font-weight: 300;
+      margin-bottom: 16px;
+    }
+
+    .case-info p {
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+
+    .case-pages {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .case-main {
+      min-width: 0;
+      background: var(--soft);
+    }
+
+    .case-canvas-wrap {
+      padding: clamp(18px, 3vw, 42px);
+      overflow: auto;
+      display: grid;
+      place-items: start center;
+    }
+
+    .poetry-list {
+      border: 1px solid var(--ink);
+      background: var(--paper);
+    }
+
+    .poem-row {
+      appearance: none;
+      width: 100%;
+      color: inherit;
+      text-align: left;
+      background: var(--paper);
+      border: 0;
+      border-bottom: 1px solid var(--line);
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: clamp(18px, 2.6vw, 38px);
+      padding: clamp(18px, 2.5vw, 34px);
+      align-items: center;
+      cursor: pointer;
+    }
+
+    .poem-row:hover,
+    .poem-row.active {
+      background: var(--accent);
+    }
+
+    .poem-meta {
+      grid-column: 1 / span 2;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-family: var(--mono);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+    .poem-row:hover .poem-meta,
+    .poem-row.active .poem-meta { color: var(--ink); }
+
+    .poem-copy {
+      grid-column: 3 / span 7;
+    }
+
+    .poem-copy h3 {
+      font-size: clamp(24px, 3vw, 42px);
+      line-height: 1;
+      font-weight: 300;
+      margin-bottom: 10px;
+    }
+
+    .poem-copy p {
+      font-size: clamp(16px, 1.4vw, 20px);
+      line-height: 1.42;
+      font-weight: 400;
+      color: var(--muted);
+    }
+
+    .poem-row:hover .poem-copy p,
+    .poem-row.active .poem-copy p { color: var(--ink); }
+
+    .poem-type {
+      grid-column: 10 / span 3;
+      display: grid;
+      place-items: center;
+      border: 1px solid currentColor;
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      min-height: 68px;
+    }
+
+    .poem-reader {
+      margin-top: 24px;
+      border: 1px solid var(--ink);
+      background: #fff;
+      color: var(--ink);
+      min-height: 64vh;
+      display: none;
+      grid-template-columns: 260px minmax(0, 1fr);
+    }
+
+    .poem-reader.active {
+      display: grid;
+    }
+
+    .poem-reader-meta {
+      border-right: 1px solid var(--ink);
+      padding: 24px;
+      font-family: var(--mono);
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .poem-reader-meta h3 {
+      font-family: var(--sans);
+      color: var(--ink);
+      font-size: clamp(28px, 3vw, 44px);
+      line-height: 1.05;
+      font-weight: 300;
+      text-transform: none;
+      margin: 22px 0;
+    }
+
+    .poem-reader-text {
+      padding: clamp(28px, 5vw, 76px);
+      overflow: auto;
+      max-height: 76vh;
+      font-family: "老报宋", "SimSun", "宋体", serif;
+      font-size: clamp(18px, 1.45vw, 22px);
+      line-height: 1.65;
+      white-space: pre-wrap;
+    }
+
+    .contact {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: clamp(18px, 3vw, 48px);
+      align-items: start;
+    }
+
+    .contact-title {
+      grid-column: 1 / span 7;
+      font-size: clamp(38px, 6vw, 90px);
+      line-height: 1;
+      font-weight: 200;
+    }
+
+    .contact-panel {
+      grid-column: 8 / span 5;
+      border-top: 1px solid var(--ink);
+    }
+
+    .contact-line {
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      gap: 18px;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--line);
+      font-size: 18px;
+    }
+
+    .contact-line span {
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+
+    /* Unified compact typography pass */
+    .hero {
+      padding-top: clamp(24px, 3.6vw, 52px);
+      padding-bottom: clamp(28px, 4vw, 58px);
+    }
+
+    .hero-main {
+      min-height: clamp(430px, 48vh, 560px);
+      gap: clamp(24px, 3.2vw, 44px);
+    }
+
+    h1 {
+      font-size: clamp(24px, 2.6vw, 38px);
+    }
+
+    .manifesto {
+      margin-top: 20px;
+      font-size: clamp(42px, 6.1vw, 86px);
+      line-height: 1;
+    }
+
+    .hero-lead {
+      max-width: 690px;
+      font-size: clamp(20px, 2.25vw, 32px);
+      line-height: 1.28;
+    }
+
+    .section {
+      padding-top: clamp(38px, 5.2vw, 76px);
+      padding-bottom: clamp(42px, 5.6vw, 86px);
+    }
+
+    .section-head {
+      margin-bottom: clamp(26px, 3.8vw, 48px);
+      gap: clamp(16px, 2vw, 30px);
+    }
+
+    .section-title {
+      font-size: clamp(28px, 3.15vw, 46px);
+      line-height: 1.16;
+    }
+
+    .section-note {
+      font-size: clamp(16px, 1.32vw, 20px);
+      line-height: 1.5;
+    }
+
+    .film-strip {
+      margin-top: clamp(26px, 3.6vw, 48px);
+      padding-top: clamp(24px, 3vw, 42px);
+      gap: clamp(16px, 2.2vw, 30px);
+    }
+
+    .film-title-slot {
+      font-size: clamp(34px, 4vw, 60px);
+      line-height: .96;
+    }
+
+    .film-note h3 {
+      font-size: clamp(24px, 2.45vw, 34px);
+      line-height: 1.12;
+      margin-bottom: 10px;
+    }
+
+    .film-note p,
+    .process-step p,
+    .viewer-meta p,
+    .mark-card p,
+    .case-info p,
+    .contact-line {
+      font-size: 15px;
+      line-height: 1.55;
+    }
+
+    .process-step {
+      min-height: 190px;
+      padding: 18px;
+      grid-template-rows: 24px minmax(58px, auto) auto;
+      gap: 12px;
+    }
+
+    .process-step strong {
+      font-size: clamp(24px, 1.95vw, 31px);
+      line-height: 1.12;
+    }
+
+    .viewer {
+      min-height: 58vh;
+    }
+
+    .project-tab {
+      min-height: 64px;
+      padding: 12px 16px;
+    }
+
+    .project-tab strong {
+      font-size: 16px;
+      line-height: 1.28;
+    }
+
+    .viewer-meta,
+    .case-info {
+      padding: 18px;
+    }
+
+    .viewer-meta h3,
+    .case-info h3 {
+      font-size: clamp(24px, 2.2vw, 34px);
+      line-height: 1.12;
+    }
+
+    .mark-card {
+      min-height: 230px;
+      padding: clamp(20px, 2.4vw, 32px);
+    }
+
+    .mark-card h3 {
+      font-size: clamp(28px, 3.25vw, 46px);
+      line-height: 1.08;
+    }
+
+    .poem-row {
+      gap: clamp(14px, 1.8vw, 26px);
+      padding: clamp(16px, 1.9vw, 24px);
+    }
+
+    .poem-meta {
+      gap: 5px;
+      font-size: 12px;
+    }
+
+    .poem-copy h3 {
+      font-size: clamp(23px, 2.2vw, 34px);
+      line-height: 1.12;
+      margin-bottom: 8px;
+    }
+
+    .poem-copy p {
+      font-size: clamp(15px, 1.25vw, 18px);
+      line-height: 1.52;
+    }
+
+    .poem-type {
+      min-height: 50px;
+      font-size: 11px;
+    }
+
+    .poem-reader {
+      min-height: 52vh;
+    }
+
+    .poem-reader-meta,
+    .poem-reader-text {
+      padding: clamp(22px, 3.4vw, 48px);
+    }
+
+    .poem-reader-meta h3 {
+      font-size: clamp(26px, 2.4vw, 36px);
+      line-height: 1.12;
+      margin: 16px 0;
+    }
+
+    .poem-reader-text {
+      max-height: 68vh;
+      font-size: clamp(17px, 1.25vw, 20px);
+      line-height: 1.7;
+    }
+
+    .contact-title {
+      font-size: clamp(36px, 5vw, 72px);
+      line-height: 1.04;
+    }
+
+    .poem-reader {
+      grid-template-columns: 1fr;
+      min-height: 0;
+    }
+
+    .poem-reader-meta {
+      border-right: 0;
+      border-bottom: 1px solid var(--ink);
+      text-align: center;
+    }
+
+    .poem-reader-meta h3 {
+      font-size: clamp(34px, 4.2vw, 58px);
+      line-height: 1.08;
+      font-weight: 250;
+      margin: 12px 0;
+    }
+
+    .poem-reader-text {
+      max-width: 860px;
+      width: 100%;
+      margin: 0 auto;
+      max-height: 68vh;
+      font-family: "老报宋", "SimSun", "宋体", serif;
+      font-size: clamp(17px, 1.25vw, 20px);
+      line-height: 1.86;
+      text-align: center;
+    }
+
+    .poem-reader-text h4 {
+      margin: 2em 0 1em;
+      font-family: "老报宋", "SimSun", "宋体", serif;
+      font-size: 1em;
+      line-height: inherit;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      text-align: center;
+    }
+
+    .poem-reader-text h4:first-child {
+      margin-top: 0;
+    }
+
+    .poem-reader-text p {
+      margin: 0 0 .5em;
+      line-height: inherit;
+    }
+
+    .poem-reader-text .poem-space {
+      height: 1em;
+    }
+
+    [data-animate] {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 680ms ease, transform 680ms ease;
+    }
+
+    [data-animate].visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .tile[data-animate].visible {
+      transition-delay: var(--delay, 0ms);
+    }
+
+    /* 增强交互动效 */
+    .project-card,
+    .service-card,
+    .mark-card {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-card::after,
+    .service-card::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 3px;
+      background: var(--ink);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 400ms ease;
+    }
+
+    .project-card:hover::after,
+    .service-card:hover::after {
+      transform: scaleX(1);
+    }
+
+    .project-card .pc-arrow span:last-child {
+      display: inline-block;
+      transition: transform 300ms ease;
+    }
+    .project-card:hover .pc-arrow span:last-child {
+      transform: translateX(6px);
+    }
+
+    .poem-row {
+      transition: background 200ms ease;
+    }
+
+    .button,
+    .chip {
+      transition: transform 200ms ease, background 200ms ease;
+    }
+    .button:hover {
+      transform: translateY(-2px);
+    }
+
+    .nav a {
+      transition: border-color 200ms ease, color 200ms ease;
+    }
+
+    .brand-mark:hover .avatar {
+      transform: rotate(3deg);
+      transition: transform 300ms ease;
+    }
+
+    .contact-line a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 1080px) {
+      .topbar-inner {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+      }
+      .nav {
+        display: flex;
+        overflow-x: auto;
+        gap: 22px;
+        padding-top: 10px;
+        border-top: 1px solid var(--line);
+        scrollbar-width: none;
+      }
+      .nav::-webkit-scrollbar { display: none; }
+      .hero,
+      .section-head,
+      .contact {
+        grid-template-columns: 1fr;
+      }
+      .hero-main,
+      .hero-panel,
+      .section-num,
+      .section-title,
+      .section-note,
+      .contact-title,
+      .contact-panel {
+        grid-column: 1;
+      }
+      .hero {
+        padding-top: 28px;
+        padding-bottom: 40px;
+      }
+      .hero-main {
+        min-height: auto;
+      }
+      .process { grid-template-columns: 1fr; }
+      .viewer { grid-template-columns: 1fr; }
+      .viewer-side { border-right: 0; border-bottom: 1px solid var(--ink); }
+      .project-tabs { grid-template-columns: repeat(2, 1fr); }
+      .mark-card { grid-column: span 12; }
+      .case-viewer.active { grid-template-columns: 1fr; }
+      .case-info { border-right: 0; border-bottom: 1px solid var(--ink); }
+      .film-strip { grid-template-columns: 1fr; }
+      .film-image,
+      .film-note { grid-column: 1; }
+      .poem-row { grid-template-columns: 1fr; }
+      .poem-meta,
+      .poem-copy,
+      .poem-type { grid-column: 1; }
+      .poem-meta { gap: 18px; }
+      .poem-type { min-height: 86px; }
+      .poem-reader { grid-template-columns: 1fr; }
+      .poem-reader-meta { border-right: 0; border-bottom: 1px solid var(--ink); }
+    }
+
+    @media (max-width: 640px) {
+      :root { --pad: 16px; }
+      .topbar {
+        position: sticky;
+      }
+      .project-card-grid {
+        grid-template-columns: 1fr !important;
+      }
+      .project-card {
+        grid-column: span 1 !important;
+        min-height: 160px !important;
+        padding: 18px !important;
+      }
+      .copy-grid {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 16px !important;
+        width: 100% !important;
+      }
+      .copy-card {
+        width: 100% !important;
+        font-size: 14px !important;
+        margin-bottom: 16px !important;
+      }
+      .project-card-grid, .project-grid {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 16px !important;
+      }
+      .project-card {
+        width: 100% !important;
+      }
+      .project-card-grid {
+        grid-template-columns: 1fr !important;
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 16px !important;
+      }
+      .project-card {
+        grid-column: span 1 !important;
+        width: 100% !important;
+      }
+      .project-card p, .copy-card p, .section-note, .process-step p {
+        font-size: 13px !important;
+        line-height: 1.6 !important;
+      }
+      .hero-panel {
+        display: none !important;
+        visibility: hidden !important;
+        height: 0 !important;
+        overflow: hidden !important;
+      }
+      .hero-lead {
+        font-size: 15px !important;
+        line-height: 1.5 !important;
+      }
+      .manifesto {
+        font-size: 32px !important;
+        line-height: 1.1 !important;
+      }
+      .section-title {
+        font-size: 22px !important;
+        line-height: 1.2 !important;
+      }
+      .section-note {
+        font-size: 13px !important;
+        line-height: 1.5 !important;
+      }
+      .poem-reader-text {
+        font-size: 15px !important;
+        line-height: 1.7 !important;
+      }
+      .process-step {
+        padding: 16px !important;
+        gap: 8px !important;
+      }
+      .process-step strong {
+        font-size: 22px !important;
+      }
+      .process-step p {
+        font-size: 13px !important;
+      }
+      .nav {
+        font-size: 12px !important;
+      }
+      .topbar-inner {
+        min-height: 58px;
+      }
+      .brand-mark { grid-template-columns: 28px auto; font-size: 12px; }
+      .avatar { width: 28px; height: 28px; }
+      .nav {
+        gap: 18px;
+        font-size: 11px;
+        padding-bottom: 2px;
+      }
+      .hero {
+        gap: 24px;
+        padding-top: 22px;
+        padding-bottom: 34px;
+      }
+      h1 {
+        margin-top: 12px;
+        font-size: 28px;
+      }
+      .kicker {
+        font-size: 11px;
+        line-height: 1.45;
+      }
+      .hero-main {
+        gap: 30px;
+      }
+      .hero-panel {
+        grid-template-rows: repeat(3, 96px);
+      }
+      .tile { padding: 10px; font-size: 10px; }
+      .tile.big { font-size: 42px; }
+      .tile.s5 { font-size: 22px; }
+      .photo-tile::after { left: 10px; top: 10px; font-size: 9px; }
+      .manifesto {
+        margin-top: 18px;
+        font-size: clamp(40px, 13vw, 58px);
+        line-height: 1;
+      }
+      .manifesto span { white-space: normal; }
+      .hero-lead {
+        font-size: 22px;
+        line-height: 1.28;
+      }
+      .section {
+        padding-top: 42px;
+        padding-bottom: 58px;
+      }
+      .section-head {
+        gap: 14px;
+        margin-bottom: 28px;
+      }
+      .section-title {
+        font-size: 34px;
+        line-height: 1.12;
+      }
+      .section-note {
+        font-size: 18px;
+        line-height: 1.5;
+      }
+      .process-step {
+        min-height: 0;
+        grid-template-rows: auto auto auto;
+        gap: 12px;
+        padding: 18px 20px 20px;
+      }
+      .process-step strong {
+        max-width: none;
+        font-size: 28px;
+        line-height: 1.12;
+      }
+      .process-step p {
+        max-width: none;
+        font-size: 15px;
+        line-height: 1.45;
+      }
+      .film-strip {
+        margin-top: 34px;
+        padding-top: 28px;
+        gap: 14px;
+      }
+      .film-title-slot {
+        min-height: 128px;
+        min-height: 86px;
+        font-size: 38px;
+        white-space: nowrap;
+      }
+      .film-title-slot { justify-content: flex-start; text-align: left; }
+      .film-copy p {
+        font-size: 15px;
+      }
+      .music-underbar {
+        grid-template-columns: 1fr;
+        padding: 14px 16px;
+      }
+      .music-underbar p {
+        font-size: 13px;
+      }
+      .music-tags {
+        gap: 5px;
+      }
+      .music-underbar strong {
+        font-size: 24px;
+      }
+      .music-underbar em {
+        writing-mode: horizontal-tb;
+      }
+      .viewer {
+        min-height: 0;
+      }
+      .project-tab {
+        min-height: 64px;
+        padding: 12px 14px;
+      }
+      .project-tab strong {
+        font-size: 16px;
+      }
+      .viewer-meta {
+        margin-top: 0;
+      }
+      .viewer-meta h3 {
+        font-size: 30px;
+      }
+      .button, .chip { width: 100%; }
+      .project-tabs { grid-template-columns: 1fr; }
+      .viewer-toolbar {
+        min-height: 0;
+        align-items: stretch;
+        flex-direction: column;
+        padding: 12px;
+      }
+      .viewer-toolbar .group {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+      .viewer-toolbar .group:last-child {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .page-btn {
+        min-width: 0;
+        min-height: 42px;
+      }
+      .canvas-wrap,
+      .case-canvas-wrap {
+        padding: 12px;
+        overflow-x: hidden;
+      }
+      canvas {
+        width: 100% !important;
+      }
+      .mark-card {
+        min-height: 210px;
+        padding: 20px;
+      }
+      .mark-card h3 {
+        font-size: 36px;
+      }
+      .case-info {
+        padding: 18px;
+      }
+      .case-pages {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+      .contact-line { grid-template-columns: 1fr; }
+      .contact-title {
+        font-size: 50px;
+      }
+      .poem-row { padding: 20px; gap: 16px; }
+      .poem-copy h3 {
+        font-size: 32px;
+        margin-bottom: 12px;
+      }
+      .poem-copy p {
+        font-size: 18px;
+      }
+      .poem-type { min-height: 56px; }
+      .poem-reader {
+        min-height: 0;
+      }
+      .poem-reader-meta {
+        padding: 18px;
+      }
+      .poem-reader-text {
+        max-height: none;
+        padding: 22px;
+        font-size: 18px;
+        line-height: 1.62;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .brand-mark span {
+        max-width: 220px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      .hero-panel {
+        grid-template-rows: repeat(3, 86px);
+      }
+      .tile.s1 { grid-column: 1; grid-row: 1; }
+      .tile.s2 { grid-column: 2; grid-row: 1; }
+      .tile.s3 { grid-column: 1; grid-row: 2; }
+      .tile.s4 { display: none; }
+      .tile.s5 { grid-column: 2; grid-row: 2; font-size: 18px; }
+      .tile.s6 { grid-column: 2; grid-row: 3; }
+      .tile.s7 { grid-column: 1; grid-row: 3; }
+      .manifesto {
+        font-size: 42px;
+      }
+      .hero-lead {
+        font-size: 20px;
+      }
+      .viewer-toolbar .group {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+      .section-title,
+      .contact-title {
+        font-size: 40px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .hero-panel {
+        display: none !important;
+      }
+      .hero {
+        padding-top: 18px;
+        padding-bottom: 28px;
+        gap: 20px;
+      }
+
+      .hero-main {
+        gap: 24px;
+      }
+
+      h1 {
+        font-size: 24px;
+      }
+
+      .manifesto {
+        margin-top: 14px;
+        font-size: clamp(26px, 8.5vw, 36px);
+        line-height: 1.1;
+      }
+
+      .manifesto span + span {
+        margin-top: .08em;
+      }
+
+      .hero-lead {
+        font-size: 18px;
+        line-height: 1.42;
+      }
+
+      .hero-actions {
+        margin-top: 18px;
+        gap: 8px;
+      }
+
+      .button,
+      .chip {
+        min-height: 40px;
+        font-size: 12px;
+      }
+
+      .section {
+        padding-top: 34px;
+        padding-bottom: 42px;
+      }
+
+      .section-head {
+        gap: 10px;
+        margin-bottom: 22px;
+      }
+
+      .section-title,
+      .contact-title {
+        font-size: 30px;
+        line-height: 1.18;
+      }
+
+      .section-note {
+        font-size: 15px;
+        line-height: 1.55;
+      }
+
+      .process-step {
+        padding: 14px 16px 16px;
+        gap: 8px;
+      }
+
+      .process-step strong {
+        font-size: 25px;
+      }
+
+      .process-step p {
+        font-size: 14px;
+        line-height: 1.48;
+      }
+
+      .film-strip {
+        margin-top: 24px;
+        padding-top: 22px;
+        gap: 12px;
+      }
+
+      .film-title-slot {
+        min-height: 58px;
+        padding: 14px 16px;
+        font-size: 30px;
+      }
+
+      .film-copy {
+        padding: 14px 16px 16px;
+      }
+
+      .film-note h3 {
+        font-size: 25px;
+      }
+
+      .viewer-meta,
+      .case-info {
+        padding: 14px 16px;
+      }
+
+      .viewer-meta h3,
+      .case-info h3 {
+        font-size: 25px;
+      }
+
+      .mark-card {
+        min-height: 170px;
+        padding: 16px;
+      }
+      .mark-card h3 {
+        font-size: 29px;
+      }
+
+      .poem-row {
+        padding: 14px 16px;
+        gap: 10px;
+      }
+
+      .poem-meta {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 10px;
+        font-size: 11px;
+      }
+
+      .poem-copy h3 {
+        font-size: 25px;
+        margin-bottom: 6px;
+      }
+
+      .poem-copy p {
+        font-size: 15px;
+        line-height: 1.55;
+      }
+
+      .poem-type {
+        min-height: 40px;
+        place-items: center start;
+        padding-left: 12px;
+      }
+
+      .poem-reader-meta,
+      .poem-reader-text {
+        padding: 18px;
+      }
+
+      .poem-reader-meta {
+        text-align: center;
+      }
+
+      .poem-reader-meta h3 {
+        font-size: 32px;
+      }
+
+      .poem-reader-text {
+        font-size: 17px;
+        line-height: 1.78;
+        text-align: center;
+      }
+
+      .poem-reader-text h4 {
+        margin: 1.18em 0 .5em;
+        font-size: 1.08em;
+      }
+
+      .poem-reader-text p {
+        margin-bottom: .34em;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="site-grid topbar-inner">
+      <a class="brand-mark" href="#top" aria-label="返回首页">
+        <img loading="lazy" class="avatar" src="images/avatar-tanyan.webp" alt="谭焱头像">
+        <span>Tan Yan / Creative Portfolio</span>
+      </a>
+      <nav class="nav" aria-label="主导航">
+        <a href="#method">Method</a>
+        <a href="#services">Services</a>
+        <a href="#projects">Projects</a>
+        <a href="#marks">COPY</a>
+        <a href="#writing">Writing</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="site-grid hero">
+      <div class="hero-main" data-animate>
+        <div>
+          <p class="kicker">Culture Strategy / Brand / Writing / Visual / AI Workflow</p>
+          <h1>谭焱 / 千音</h1>
+          <p class="manifesto"><span>让文化被看见</span><span>让创意可以落地</span></p>
+        </div>
+        <div>
+          <p class="hero-lead">4年文化创意策划经验，做过展馆、品牌、文创、活动。从策略到执行能一个人闭环。</p>
+          <div class="hero-actions">
+            <a class="button accent" href="#projects">查看项目案例</a>
+            <a class="button secondary" href="#writing">阅读文字作品</a>
+          </div>
+        </div>
+      </div>
+      <div class="hero-panel" aria-label="瑞士国际主义色块结构">
+        <div class="tile s1 soft" data-animate style="--delay:60ms">Creative Portfolio<br>Design / Culture</div>
+        <div class="tile s2 accent" data-animate style="--delay:120ms">
+          <span class="tile-note">重组未来<br>连接文化</span>
+          <span class="tile-note center">让地方经验<br>进入新的视觉语法</span>
+          <span class="tile-note bottom"><span>01 / Strategy</span><span>Culture Link</span></span>
+        </div>
+        <div class="tile s3 big" data-animate style="--delay:180ms">构<br>建</div>
+        <div class="tile s4 vertical" data-animate style="--delay:240ms">Information Architecture / Visual Language</div>
+        <div class="tile s5" data-animate style="--delay:300ms">文案<br>品牌<br>影像<br>三维</div>
+        <div class="tile s7" data-animate style="--delay:330ms">
+          <span class="tile-note">Culture Insight<br>Brand Strategy<br>Visual System</span>
+          <span class="tile-note center">把看不见的关系<br>整理成可传播的秩序</span>
+          <span class="tile-note bottom"><span>2026</span><span>Creative Service</span></span>
+        </div>
+        <div class="tile s6 soft text-tile" data-animate style="--delay:360ms">
+          <span class="tile-note bottom"><span>Writer &nbsp;&nbsp;×&nbsp;&nbsp; Designer &nbsp;&nbsp;×&nbsp;&nbsp; Strategist</span></span>
+        </div>
+      </div>
+    </section>
+
+    <section class="site-grid section" id="method">
+      <div class="section-head" data-animate>
+        <p class="section-num">01 / Method</p>
+        <h2 class="section-title">把模糊想法变成可执行方案。</h2>
+        <p class="section-note">从调研到落地，五步走完整套方案。</p>
+      </div>
+      <div class="process">
+        <article class="process-step" data-animate><span class="kicker">01</span><strong>洞察研究</strong><p>梳理背景、受众、竞品与文化线索，找到项目真正值得被记住的入口。</p></article>
+        <article class="process-step" data-animate><span class="kicker">02</span><strong>策略叙事</strong><p>把信息变成清晰观点，搭建命名、主张、故事线与提案逻辑。</p></article>
+        <article class="process-step" data-animate><span class="kicker">03</span><strong>品牌视觉</strong><p>完成标志、视觉系统、版式语言、包装与公共传播物料的设计表达。</p></article>
+        <article class="process-step" data-animate><span class="kicker">04</span><strong>AI / 影像 / 3D</strong><p>使用热门 AI 工具、视频剪辑和三维建模方法扩展视觉提案效率。</p></article>
+        <article class="process-step" data-animate><span class="kicker">05</span><strong>提案落地</strong><p>将概念、视觉、文案、场景和执行清单组织成客户能够决策的方案。</p></article>
+      </div>
+
+    </section>
+
+    <section class="site-grid section" id="services">
+      <div class="section-head" data-animate>
+        <p class="section-num">02 / Services</p>
+        <h2 class="section-title">能做什么，怎么合作。</h2>
+        <p class="section-note">四个方向，覆盖文化创意从思考到产出的完整链路。</p>
+      </div>
+      <div class="services-grid" data-animate>
+        <article class="service-card accent">
+          <span class="kicker">A / Culture & Strategy</span>
+          <h3>文化洞察与品牌策略</h3>
+          <p>从地方文化、历史叙事、用户洞察出发，找到项目的文化切入点，构建品牌主张与内容策略。</p>
+        </article>
+        <article class="service-card">
+          <span class="kicker">B / Visual & Design</span>
+          <h3>视觉设计与系统搭建</h3>
+          <p>标志设计、视觉识别系统、包装设计、展陈导视、海报插画——建立统一且可延展的视觉语言。</p>
+        </article>
+        <article class="service-card">
+          <span class="kicker">C / Writing & Content</span>
+          <h3>文案写作与内容创作</h3>
+          <p>品牌文案、策划案、提案撰写、诗歌文学、原创歌词——用文字把想法说清楚、说动人。</p>
+        </article>
+        <article class="service-card">
+          <span class="kicker">D / AI & Media</span>
+          <h3>AI 视觉与影像制作</h3>
+          <p>AI 辅助视觉生成、视频剪辑、MV 制作、三维概念图——用新工具扩展创意落地的效率与可能性。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="site-grid section" id="projects">
+      <div class="section-head" data-animate>
+        <p class="section-num">03 / Projects</p>
+        <h2 class="section-title">从概念到落地的完整项目方案。</h2>
+        <p class="section-note">十二个真实落地的文化创意方案。点击卡片查看完整 PDF。</p>
+      </div>
+      <div class="project-card-grid" id="projectCardGrid" data-animate></div>
+    </section>
+
+    <section class="site-grid section" id="marks">
+      <div class="section-head" data-animate>
+        <p class="section-num">04 / Copywriting</p>
+        <h2 class="section-title">文案与策划案例。</h2>
+        <p class="section-note">从展馆解说词到校史馆文本，从品牌宣传到视频脚本——精选文案与策划类案例，看文字如何把策略变成可传播的表达。</p>
+      </div>
+      <div class="copy-grid" data-animate>
+        <a class="copy-card" href="content/pdfjs/web/viewer.html?file=../../copywriting/huanggang-folk-museum-full-copy.pdf" target="_blank" rel="noopener">
+          <span class="kicker">C-01 / 展馆文案</span>
+          <h3>团风黄冈民俗馆</h3>
+          <p class="copy-desc">多媒体展项策划与解说词撰写，涵盖沙盘投影、触摸查询、互动展项等8组多媒体内容。</p>
+          <blockquote class="copy-excerpt">
+            "大崎山属大别山余脉，主峰海拔1040.8米……数千年的历史积淀，团风境内保存了诸多的名胜古迹，星罗棋布在团风的土地之上。"
+          </blockquote>
+          <span class="pc-arrow"><span>打开完整文案</span><span>→</span></span>
+        </a>
+        <a class="copy-card" href="content/pdfjs/web/viewer.html?file=../../copywriting/ezhou-high-school-history.pdf" target="_blank" rel="noopener">
+          <span class="kicker">C-02 / 校史文本</span>
+          <h3>鄂州高中校史馆</h3>
+          <p class="copy-desc">校史馆前言与整体文本大纲撰写，用四言韵文串起百年校史脉络。</p>
+          <blockquote class="copy-excerpt">
+            "悠悠鄂国，奕奕武昌。吴山楚水，源远流长。东晋官学，初创辉煌……春风化雨，兰蕙腾芳。"
+          </blockquote>
+          <span class="pc-arrow"><span>打开完整文案</span><span>→</span></span>
+        </a>
+        <a class="copy-card" href="content/pdfjs/web/viewer.html?file=../../copywriting/u1-nails-full-project.pdf" target="_blank" rel="noopener">
+          <span class="kicker">C-03 / 品牌文案</span>
+          <h3>U1 Nails 穿戴甲</h3>
+          <p class="copy-desc">品牌宣传文案与视频拍摄脚本，把穿戴甲产品包装成"指尖的艺术宣言"。</p>
+          <blockquote class="copy-excerpt">
+            "你是唯一能定义自己深渊的人。在成为玫瑰、成为宣言、成为伤痕之前，你的指尖，是你的画布，也是你的签名。"
+          </blockquote>
+          <span class="pc-arrow"><span>打开完整文案</span><span>→</span></span>
+        </a>
+      </div>
+
+    </section>
+
+    <section class="site-grid section" id="writing">
+      <div class="section-head" data-animate>
+        <p class="section-num">05 / Writing</p>
+        <h2 class="section-title">写作是思考的另一条路。</h2>
+        <p class="section-note">从古韵到现代诗，从历史叙事到日常观察——十二年写作积累的诗歌与原创歌词。点击标题进入完整阅读。</p>
+      </div>
+      <div class="poetry-list" id="poetryList" aria-label="诗歌作品列表">
+      </div>
+      <article class="poem-reader" id="poemReader" aria-live="polite">
+        <aside class="poem-reader-meta">
+          <span id="readerYear">2026</span>
+          <h3 id="readerTitle">风物四章</h3>
+          <span id="readerType">现代诗歌</span>
+        </aside>
+        <div class="poem-reader-text" id="readerText"></div>
+      </article>
+      <div class="film-strip music-strip" data-animate>
+        <figure class="film-image music-stage">
+          <video class="music-video" controls preload="auto" playsinline webkit-playsinline style="width:100%;height:auto;background:#000;">
+            <source src="/tanyan-portfolio/signal-tower.mp4" type="video/mp4">
+            你的浏览器暂不支持视频播放。
+          </video>
+          <figcaption class="music-underbar">
+            <span><strong>信号塔</strong>Signal Tower / Original MV / Lyrics / Music / Visual Direction</span>
+            <p>以信号、城市和远方为核心意象，把原创歌曲、动态影像和 AI 视觉工作流整合成一支完整 MV。</p>
+            <div class="music-tags" aria-label="原创音乐作品">
+              <span>Tower of Steel Dreams</span>
+              <span>漂泊成雨</span>
+              <span>照骨镜</span>
+              <span>燃烧画像</span>
+              <span>蓝眼泪</span>
+            </div>
+            <em>Original Music</em>
+          </figcaption>
+        </figure>
+        <div class="film-note">
+          <div class="film-title-slot one-line">原创音乐</div>
+          <div class="film-copy">
+            <p class="kicker">Original Music / MV</p>
+            <h3>让文字进入声音和影像。</h3>
+            <div class="music-list" aria-label="原创音乐单曲列表">
+              <div class="music-track">
+                <strong>Tower of Steel Dreams</strong>
+                <audio controls preload="metadata" src="content/media/Tower of Steel Dreams.mp3"></audio>
+              </div>
+              <div class="music-track">
+                <strong>漂泊成雨</strong>
+                <audio controls preload="metadata" src="content/media/漂泊成雨.mp3"></audio>
+              </div>
+              <div class="music-track">
+                <strong>照骨镜</strong>
+                <audio controls preload="metadata" src="content/media/照骨镜.mp3"></audio>
+              </div>
+              <div class="music-track">
+                <strong>燃烧画像</strong>
+                <audio controls preload="metadata" src="content/media/燃烧画像.mp3"></audio>
+              </div>
+              <div class="music-track">
+                <strong>蓝眼泪</strong>
+                <audio controls preload="metadata" src="content/media/蓝眼泪.mp3"></audio>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="site-grid section" id="contact">
+      <div class="contact" data-animate>
+        <h2 class="contact-title">让项目有一个能被记住的表达。</h2>
+        <div class="contact-panel">
+          <div class="contact-line"><span>Phone</span><a href="tel:19174256867">19174256867</a></div>
+          <div class="contact-line"><span>Email</span><a href="mailto:1474335209@qq.com">1474335209@qq.com</a></div>
+          <div class="contact-line"><span>Wechat</span><strong>ty1474335209</strong></div>
+          <div class="contact-line"><span>Fit</span><strong>品牌升级 / 文旅策划 / 展陈叙事 / 包装视觉 / 内容提案</strong></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    function pageRange(start, end) {
+      return Array.from({ length: end - start + 1 }, (_, index) => start + index);
+    }
+
+    const projects = [
+      // 企业类展馆
+      {
+        code: 'E-01',
+        category: '企业展馆',
+        title: '卡塔尔农场展厅',
+        desc: '为巴拉德纳乳业打造的海外农场展厅概念方案，融合在地文化与现代农业展示逻辑。',
+        file: 'content/pdfjs/web/viewer.html?file=../../projects/qatar-farm-exhibition.pdf',
+        pages: null
+      },
+      {
+        code: 'E-02',
+        category: '企业展馆',
+        title: '核安盾牌·深海护航',
+        desc: '719研究所核应急与辐射防护展厅，围绕核安全叙事与科技感空间体验，构建沉浸式展厅方案。',
+        file: 'content/pdfjs/web/viewer.html?file=../../projects/nuclear-exhibition-design.pdf',
+        pages: null
+      },
+      {
+        code: 'E-03',
+        category: '企业展馆',
+        title: '全能武警战士·国防教育互动体验区',
+        desc: '以国防教育为核心，通过互动体验装置与场景叙事，打造沉浸式武警文化教育空间。',
+        file: 'content/pdfjs/web/viewer.html?file=../../projects/armed-police-experience.pdf',
+        pages: null
+      },
+      {
+        code: 'E-04',
+        category: '企业展馆',
+        title: '华中师范大学前沿交叉研究院',
+        desc: '围绕研究机构的学术气质与空间识别，建立从视觉系统到场景导视的整体表达。',
+        file: 'content/pdfjs/web/viewer.html?file=../../projects/ccnu-visual-identity.pdf',
+        pages: null
+      },
+      // 文化类展馆
+      {
+        code: 'C-01',
+        category: '文化展馆',
+        title: '浙江大学校史馆',
+        desc: '从校史叙事、空间动线与观展体验出发，重构校园文化场馆的内容组织方式。',
+        file: 'content/pdfjs/web/viewer.html?file=../../projects/zju-history-museum.pdf',
+        pages: null
+      },
+      {
+        code: 'C-02',
+        category: '文化展馆',
+        title: '吴城遗址博物馆',
+        desc: '商代遗址博物馆深化设计，围绕考古遗址展示与历史叙事，构建文明探源型展馆。',
+        file: 'content/pdfjs/web/viewer.html?file=../../projects/wucheng-museum-design.pdf',
+        pages: null
+      },
+      {
+        code: 'C-03',
+        category: '文化展馆',
+        title: '黄冈民俗文化馆',
+        desc: '以民俗文化为线索，梳理地方文明史、空间内容与展陈体验之间的叙事关系。',
+        file: 'content/pdfjs/web/viewer.html?file=../../projects/huanggang-folk-museum-print.pdf',
+        pages: null
+      },
+      // 设计品牌类
+      {
+        code: 'D-01',
+        category: '设计品牌',
+        title: '循香·应梦团风县政府伴手礼盒',
+        desc: '以地方文化和苏轼叙事为核心，将香薰体验、包装仪式感与传播话术整合为礼盒方案。',
+        file: 'content/pdfjs/web/viewer.html?file=../../projects/tuanfeng-gift-box.pdf',
+        pages: null
+      },
+      {
+        code: 'D-02',
+        category: '设计品牌',
+        title: '田博士珠宝包装',
+        desc: '通过竞品研究、消费场景和高级感塑造，建立珠宝包装的视觉定位与开箱体验。',
+        file: 'content/pdfjs/web/viewer.html?file=../../projects/dr-tian-jewelry-packaging.pdf',
+        pages: null
+      },
+      {
+        code: 'D-03',
+        category: '设计品牌',
+        title: '地大文创品牌设计',
+        desc: '围绕地质大学文创品牌，从品牌色、视觉识别到应用延展，构建完整的品牌BI系统。',
+        file: 'content/pdfjs/web/viewer.html?file=../../projects/cug-cultural-brand.pdf',
+        pages: null
+      },
+      {
+        code: 'D-04',
+        category: '设计品牌',
+        title: '大地奇珍·矿石密语文创标本盒',
+        desc: '以矿石标本为载体，将地质知识与文创产品结合，打造可收藏、可传播的文化产品。',
+        file: 'content/pdfjs/web/viewer.html?file=../../projects/mineral-specimen-box.pdf',
+        pages: null
+      },
+      {
+        code: 'D-05',
+        category: '设计品牌',
+        title: '监利大米·区域品牌建设',
+        desc: '围绕监利大米区域公用品牌，从品牌定位、视觉系统到发布会全案，构建农业区域品牌的完整表达。',
+        file: 'content/pdfjs/web/viewer.html?file=../../projects/jianli-rice-brand-launch.pdf',
+        pages: null
+      }
+    ];
+
+    // const markCases = {
+    //   guqin: {
+    //     kicker: 'M-01 / Logo System',
+    //     title: '清徵古琴社',
+    //     desc: '从作品集第 12 至 19 页拆出，呈现古琴文化线索、符号提炼与应用延展。',
+    //     file: '../个人资料/谭焱的作品集(1).pdf',
+    //     pages: [12, 13, 14, 15, 16, 17, 18, 19]
+    //   },
+    //   tiantianjian: {
+    //     kicker: 'M-02 / Brand Visual',
+    //     title: '天天见梳艺',
+    //     desc: '从作品集第 33 至 34 页拆出，围绕日常品牌气质与传播画面建立统一表达。',
+    //     file: '../个人资料/谭焱的作品集(1).pdf',
+    //     pages: [33, 34]
+    //   }
+    // };
+
+    // const caseViewer = document.getElementById('caseViewer');
+    // const caseCanvas = document.getElementById('caseCanvas');
+    // const caseCtx = caseCanvas.getContext('2d');
+    // const casePages = document.getElementById('casePages');
+    // const caseTitle = document.getElementById('caseTitle');
+    // const caseDesc = document.getElementById('caseDesc');
+    // const caseKicker = document.getElementById('caseKicker');
+    // const caseState = document.getElementById('caseState');
+    const poetryList = document.getElementById('poetryList');
+    const readerTitle = document.getElementById('readerTitle');
+    const readerYear = document.getElementById('readerYear');
+    const readerType = document.getElementById('readerType');
+    const readerText = document.getElementById('readerText');
+    // let activeCaseKey = 'guqin';
+    // let activeCasePageIndex = 0;
+    let activePoemIndex = null;
+    const pdfCache = new Map();
+
+    if (window.pdfjsLib) {
+      pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+    }
+
+    function renderProjectCards() {
+      const grid = document.getElementById('projectCardGrid');
+      if (!grid) return;
+      grid.innerHTML = projects.map(project => `
+        <a class="project-card" href="${project.file}" target="_blank" rel="noopener">
+          <span class="pc-code">${project.code} · ${project.category}</span>
+          <h3>${project.title}</h3>
+          <p>${project.desc}</p>
+          <span class="pc-arrow"><span>打开完整方案</span><span>→</span></span>
+        </a>
+      `).join('');
+    }
+
+    async function getPdf(caseItem) {
+      if (!window.pdfjsLib) throw new Error('PDF.js 未加载');
+      if (!pdfCache.has(caseItem.file)) {
+        pdfCache.set(caseItem.file, pdfjsLib.getDocument(caseItem.file).promise);
+      }
+      return pdfCache.get(caseItem.file);
+    }
+
+    async function getValidPages(caseItem) {
+      const pdf = await getPdf(caseItem);
+      const sourcePages = Array.isArray(caseItem.pages) && caseItem.pages.length
+        ? caseItem.pages
+        : pageRange(1, pdf.numPages);
+      const pages = sourcePages.filter(page => page >= 1 && page <= pdf.numPages);
+      return { pdf, pages };
+    }
+
+//     function initCaseButtons() {
+//       const currentCase = markCases[activeCaseKey];
+//       casePages.innerHTML = currentCase.pages.map((page, index) => `
+//         <button class="page-btn ${index === activeCasePageIndex ? 'active' : ''}" type="button" data-case-page="${index}">${String(page).padStart(2, '0')}</button>
+//       `).join('');
+//       casePages.querySelectorAll('[data-case-page]').forEach(button => {
+//         button.addEventListener('click', () => {
+//           activeCasePageIndex = Number(button.dataset.casePage);
+//           initCaseButtons();
+//           renderCasePage();
+//         });
+//       });
+//     }
+// 
+//     async function renderCasePage() {
+//       const currentCase = markCases[activeCaseKey];
+//       const pageNumber = currentCase.pages[activeCasePageIndex];
+//       caseViewer.classList.add('active');
+//       caseKicker.textContent = currentCase.kicker;
+//       caseTitle.textContent = currentCase.title;
+//       caseDesc.textContent = currentCase.desc;
+//       caseState.textContent = `Rendering case / page ${pageNumber}`;
+//       document.body.classList.add('loading-lock');
+//       try {
+//         const { pdf, pages } = await getValidPages(currentCase);
+//         if (!pages.includes(pageNumber)) {
+//           currentCase.pages = pages;
+//           activeCasePageIndex = 0;
+//           initCaseButtons();
+//           return renderCasePage();
+//         }
+//         const page = await pdf.getPage(pageNumber);
+//         const wrap = document.querySelector('.case-canvas-wrap');
+//         const baseViewport = page.getViewport({ scale: 1 });
+//         const scale = Math.min(1.7, Math.max(0.46, (wrap.clientWidth - 24) / baseViewport.width));
+//         const rotation = (page.rotate + (currentCase.rotatePages?.[pageNumber] || 0)) % 360;
+//         const viewport = page.getViewport({ scale, rotation });
+//         caseCanvas.width = Math.floor(viewport.width);
+//         caseCanvas.height = Math.floor(viewport.height);
+//         await page.render({ canvasContext: caseCtx, viewport }).promise;
+//         caseState.textContent = `Case image view / page ${pageNumber}`;
+//       } catch (error) {
+//         caseCanvas.width = 900;
+//         caseCanvas.height = 520;
+//         caseCtx.fillStyle = '#fafaf8';
+//         caseCtx.fillRect(0, 0, caseCanvas.width, caseCanvas.height);
+//         caseCtx.fillStyle = '#0a0a0a';
+//         caseCtx.font = '28px Arial';
+//         caseCtx.fillText('案例图片视图加载失败', 48, 96);
+//         caseState.textContent = error.message;
+//       } finally {
+//         document.body.classList.remove('loading-lock');
+//       }
+//     }
+// 
+//     function openCase(key) {
+//       activeCaseKey = key;
+//       activeCasePageIndex = 0;
+//       initCaseButtons();
+//       renderCasePage();
+//       caseViewer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+//     }
+// 
+//     function closeCase() {
+//       caseViewer.classList.remove('active');
+//       caseState.textContent = '点击案例查看详情。';
+//     }
+
+    const classicPoemLines = {
+      '风物四章': '松开的手，比水更早学会凝固。',
+      '五次望向海': '有名字的地方，就有人用一生，为另一些人挡住风。',
+      '锈蚀的证词': '最后，我们都是临时停泊的船。',
+      '墙痕': '墙壁，一部被不断涂改的手稿，我们既是作者，也是其中被涂抹的句子。',
+      '西出玉门': '我们终将成为别人的遗迹。',
+      '涉世偶感': '片水光中别有天。',
+      '童年': '你的瞳依旧能返照星辰。',
+      '小词五首': '一生长系水晶瓶。',
+      '诗词十首': '人比烟花都寂寞，不堪长著少年衣。',
+      '南风': '美好的东西总能自洁。',
+      '随撷小诗六首': '抱石向水的人在歌唱。',
+      '红尘杂感': '思我前尘多少梦，也如花事也如歌。',
+      '未竟之诗': '我们低头，便看见旧朝的灰。',
+      '七月随想': '谁都没有完整地留下。'
+    };
+
+    function getClassicLine(poem) {
+      if (classicPoemLines[poem.title]) return classicPoemLines[poem.title];
+      const firstLine = (poem.text || '')
+        .split('\n')
+        .map(line => line.trim())
+        .find(line => line && !/^[一二三四五六七八九十\d★（()、.\-*]+$/.test(line));
+      return firstLine || poem.excerpt || '';
+    }
+
+    function escapeHtml(value) {
+      return String(value)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+
+    function isPoemSubTitle(line) {
+      const value = line.trim();
+      if (!value) return false;
+      if (value.length > 18) return false;
+      return /^([一二三四五六七八九十]+[、.．]|[（(][一二三四五六七八九十]+[）)]|★|\*)/.test(value)
+        || /^(七绝|七律|五绝|五律|词|南乡子|浣溪沙|鹧鸪天|沁园春|古韵|小词|有感|代祖父诗|赋菊|秋思|春日|禅隐|访山)/.test(value);
+    }
+
+    function formatPoemText(text) {
+      const normalized = String(text || '').replace(/\\n/g, '\n');
+      const lines = normalized.split('\n').map(l => l.trim());
+      let result = '';
+      let currentParagraph = [];
+      
+      function flushParagraph() {
+        if (currentParagraph.length > 0) {
+          result += '<p>' + currentParagraph.join('<br>') + '</p>';
+          currentParagraph = [];
+        }
+      }
+      
+      lines.forEach(line => {
+        if (!line) {
+          flushParagraph();
+          result += '<div class="poem-space" aria-hidden="true"></div>';
+        } else if (isPoemSubTitle(line)) {
+          flushParagraph();
+          result = result + '<h4>' + escapeHtml(line) + '</h4>';
+        } else {
+          currentParagraph.push(escapeHtml(line));
+        }
+      });
+      
+      flushParagraph();
+      return result;
+    }
+
+        function renderPoemList() {
+      const poems = [...(window.POEM_DATA || [])].sort((a, b) => { if (b.year !== a.year) return Number(b.year) - Number(a.year); const priority = { '未竟之诗': 0, '七月随想': 1 }; return (priority[a.title] ?? 99) - (priority[b.title] ?? 99); });
+      poetryList.innerHTML = poems.map((poem, index) => `
+        <button class="poem-row ${index === activePoemIndex ? 'active' : ''}" type="button" data-poem="${window.POEM_DATA.indexOf(poem)}">
+          <div class="poem-meta"><span>${poem.year}</span><span>${poem.type}</span></div>
+          <div class="poem-copy"><h3>${poem.title}</h3><p>${getClassicLine(poem)}</p></div>
+          <div class="poem-type">${String(index + 1).padStart(2, '0')} / Read</div>
+        </button>
+      `).join('');
+      poetryList.querySelectorAll('[data-poem]').forEach(button => {
+        button.onclick = () => selectPoem(Number(button.dataset.poem), true);
+        button.ondblclick = () => collapsePoem();
+      });
+    }
+
+    function selectPoem(index, shouldScroll = false) {
+      const poems = window.POEM_DATA || [];
+      if (!poems[index]) return;
+      activePoemIndex = index;
+      const poem = poems[index];
+      readerYear.textContent = poem.year;
+      readerTitle.textContent = poem.title;
+      readerType.textContent = poem.type;
+      readerText.innerHTML = formatPoemText(poem.text || '');
+      document.getElementById('poemReader').classList.add('active');
+      renderPoemList();
+      if (shouldScroll) {
+        document.getElementById('poemReader').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+
+    function collapsePoem() {
+      activePoemIndex = null;
+      document.getElementById('poemReader').classList.remove('active');
+      renderPoemList();
+    }
+
+
+//     document.querySelectorAll('[data-case]').forEach(button => {
+//       button.onclick = () => openCase(button.dataset.case);
+//       button.ondblclick = () => closeCase();
+//     });
+//     caseViewer.ondblclick = closeCase;
+    document.getElementById('poemReader').ondblclick = collapsePoem;
+//     window.openCase = openCase;
+//     window.closeCase = closeCase;
+    window.selectPoem = selectPoem;
+    window.collapsePoem = collapsePoem;
+
+    function initFilmCarousels() {
+      document.querySelectorAll('[data-carousel]').forEach(carousel => {
+        const slides = Array.from(carousel.querySelectorAll('.film-slide'));
+        const controls = carousel.querySelector('.film-controls');
+        if (!slides.length || !controls) return;
+        let active = 0;
+        let timer = null;
+
+        controls.innerHTML = `
+          <button class="film-dot" type="button" data-film-step="-1" aria-label="查看上一张影像">←</button>
+          <button class="film-dot" type="button" data-film-step="1" aria-label="查看下一张影像">→</button>
+        `;
+
+        function showSlide(index) {
+          active = (index + slides.length) % slides.length;
+          slides.forEach((slide, slideIndex) => slide.classList.toggle('active', slideIndex === active));
+        }
+
+        function startAutoPlay() {
+          window.clearInterval(timer);
+          timer = window.setInterval(() => showSlide(active + 1), 3600);
+        }
+
+        controls.querySelectorAll('[data-film-step]').forEach(button => {
+          button.addEventListener('click', () => {
+            showSlide(active + Number(button.dataset.filmStep));
+            startAutoPlay();
+          });
+        });
+
+        carousel.addEventListener('mouseenter', () => window.clearInterval(timer));
+        carousel.addEventListener('mouseleave', startAutoPlay);
+        startAutoPlay();
+      });
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.14 });
+
+    document.querySelectorAll('[data-animate]').forEach(el => observer.observe(el));
+
+    renderProjectCards();
+    renderPoemList();
+    initFilmCarousels();
+  </script>
+</body>
+</html>
