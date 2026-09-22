@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF预览</title>
+    <script src="pdfjs/build/pdf.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: #525659; font-family: sans-serif; }
+        .header {
+            position: fixed; top: 0; left: 0; right: 0; height: 50px;
+            background: #323639; color: white; display: flex; align-items: center;
+            padding: 0 15px; z-index: 100;
+        }
+        .header a { color: white; text-decoration: none; font-size: 14px; }
+        #pdf-container {
+            padding-top: 60px; padding-bottom: 20px; display: flex;
+            flex-direction: column; align-items: center; gap: 10px;
+        }
+        canvas { width: 100%; max-width: 900px; background: white; box-shadow: 0 2px 8px rgba(0,0,0,0.3); }
+        #loading { color: white; padding: 100px 20px; text-align: center; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a href="../index.html">← 返回</a>
+    </div>
+    <div id="pdf-container">
+        <div id="loading">PDF加载中...</div>
+    </div>
+    <script>
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'pdfjs/build/pdf.worker.min.js';
+        
+        const params = new URLSearchParams(location.search);
+        const file = params.get('file');
+        
+        if (file) {
+            const loadingTask = pdfjsLib.getDocument(file);
+            loadingTask.promise.then(async function(pdf) {
+                document.getElementById('loading').remove();
+                const container = document.getElementById('pdf-container');
+                
+                for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
+                    const page = await pdf.getPage(pageNum);
+                    const scale = window.innerWidth / page.getViewport({scale: 1}).width;
+                    const viewport = page.getViewport({scale: Math.min(scale, 2)});
+                    
+                    const canvas = document.createElement('canvas');
+                    canvas.width = viewport.width;
+                    canvas.height = viewport.height;
+                    container.appendChild(canvas);
+                    
+                    await page.render({
+                        canvasContext: canvas.getContext('2d'),
+                        viewport: viewport
+                    }).promise;
+                }
+            }).catch(function(err) {
+                document.getElementById('loading').textContent = '加载失败: ' + err.message;
+            });
+        }
+    </script>
+</body>
+</html>
