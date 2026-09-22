@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>诊断</title>
+</head>
+<body>
+<div id="log" style="font-family:monospace;font-size:14px;padding:16px;white-space:pre-wrap;color:#000;">开始…</div>
+<script type="module">
+const logEl = document.getElementById('log');
+const logs = [];
+function log(m){ logs.push(m); logEl.textContent = logs.join('\n'); console.log(m); }
+window.onerror = (msg,src,line,col,err)=>log('JS错误: '+msg+' @'+line+':'+col+' '+(err&&err.stack||''));
+window.addEventListener('unhandledrejection', e=>log('Promise错误: '+(e.reason&&e.reason.message||e.reason)));
+try {
+  log('1. 开始import pdf.mjs');
+  const pdfjsLib = await import('./pdfjs/build/pdf.mjs');
+  log('2. import成功, 版本=' + (pdfjsLib.version||'未知'));
+  pdfjsLib.GlobalWorkerOptions.workerSrc = './pdfjs/build/pdf.worker.mjs';
+  log('3. 设置workerSrc完成');
+  const params = new URLSearchParams(location.search);
+  const file = params.get('file');
+  log('4. file参数=' + file);
+  log('5. 开始getDocument');
+  const task = pdfjsLib.getDocument({url: file, rangeChunkSize:131072});
+  task.onProgress = e => { if(e.total) log('进度 '+Math.round(e.loaded/e.total*100)+'%'); };
+  const pdf = await task.promise;
+  log('6. PDF加载成功, 页数=' + pdf.numPages);
+  const page = await pdf.getPage(1);
+  log('7. 获取第1页成功 ' + page.getViewport({scale:1}).width);
+  const vp = page.getViewport({scale: 1});
+  const canvas = document.createElement('canvas');
+  canvas.width = Math.floor(vp.width); canvas.height = Math.floor(vp.height);
+  document.body.appendChild(canvas);
+  await page.render({canvasContext: canvas.getContext('2d'), viewport: vp}).promise;
+  log('8. 第1页渲染完成 ✓');
+} catch(err) {
+  log('捕获错误: ' + (err.message||err));
+  log(err.stack || '');
+}
+</script>
+</body>
+</html>

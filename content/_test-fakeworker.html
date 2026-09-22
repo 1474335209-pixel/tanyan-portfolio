@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
@@ -33,7 +33,7 @@
         <div id="status">正在打开文档…</div>
     </div>
     <script>
-        pdfjsLib.GlobalWorkerOptions.workerSrc = './pdfjs/build/pdf.worker.umd.min.js';
+        pdfjsLib.GlobalWorkerOptions.workerSrc = './pdfjs/build/pdf.umd.min.js';
         const params = new URLSearchParams(location.search);
         const file = params.get('file');
         const bar = document.getElementById('bar');
