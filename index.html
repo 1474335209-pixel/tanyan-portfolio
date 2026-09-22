@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>谭焱 / 千音 | 文化创意策划复合人才 · 作品集</title>
   <meta name="description" content="谭焱（千音）文化创意策划复合型人才作品集：品牌策略、文化叙事、视觉设计、文案写作、诗歌与音乐创作、AI 视觉工作流，从洞察到落地的全链路创意能力。">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
   <script src="content/poems-v2.js"></script>
   <style>
     :root {
@@ -2209,7 +2208,7 @@
         <p class="section-note">从展馆解说词到校史馆文本，从品牌宣传到视频脚本——精选文案与策划类案例，看文字如何把策略变成可传播的表达。</p>
       </div>
       <div class="copy-grid" data-animate>
-        <a class="copy-card" href="content/pdf-viewer-simple.html?file=copywriting/huanggang-full.pdf" target="_blank" rel="noopener">
+        <a class="copy-card" href="content/image-viewer.html?doc=huanggang-full">
           <span class="kicker">C-01 / 展馆文案</span>
           <h3>团风黄冈民俗馆</h3>
           <p class="copy-desc">多媒体展项策划与解说词撰写，涵盖沙盘投影、触摸查询、互动展项等8组多媒体内容。</p>
@@ -2218,7 +2217,7 @@
           </blockquote>
           <span class="pc-arrow"><span>打开完整文案</span><span>→</span></span>
         </a>
-        <a class="copy-card" href="content/pdf-viewer-simple.html?file=copywriting/ezhou-high-school-history.pdf" target="_blank" rel="noopener">
+        <a class="copy-card" href="content/image-viewer.html?doc=ezhou-high-school-history">
           <span class="kicker">C-02 / 校史文本</span>
           <h3>鄂州高中校史馆</h3>
           <p class="copy-desc">校史馆前言与整体文本大纲撰写，用四言韵文串起百年校史脉络。</p>
@@ -2227,7 +2226,7 @@
           </blockquote>
           <span class="pc-arrow"><span>打开完整文案</span><span>→</span></span>
         </a>
-        <a class="copy-card" href="content/pdf-viewer-simple.html?file=copywriting/u1-nails-full-project.pdf" target="_blank" rel="noopener">
+        <a class="copy-card" href="content/image-viewer.html?doc=u1-nails-full-project">
           <span class="kicker">C-03 / 品牌文案</span>
           <h3>U1 Nails 穿戴甲</h3>
           <p class="copy-desc">品牌宣传文案与视频拍摄脚本，把穿戴甲产品包装成"指尖的艺术宣言"。</p>
@@ -2258,8 +2257,7 @@
       </article>
       <div class="film-strip music-strip" data-animate>
         <figure class="film-image music-stage">
-          <video class="music-video" controls preload="metadata" playsinline webkit-playsinline style="width:100%;height:auto;background:#000;min-height:200px;">
-            <source src="content/media/signal-tower.mp4" type="video/mp4">
+          <video class="music-video" controls preload="none" playsinline webkit-playsinline poster="content/media/signal-tower-poster.webp" src="content/media/signal-tower.mp4" style="width:100%;height:auto;background:#000;min-height:200px;">
             你的浏览器暂不支持视频播放。
           </video>
           <figcaption class="music-underbar">
@@ -2321,6 +2319,30 @@
   </main>
 
   <script>
+    // === 返回定位：进入文档前记录滚动位置，返回时恢复 ===
+    (function(){
+      var KEY = 'portfolioScrollY';
+      function saveY(){ try{ sessionStorage.setItem(KEY, String(window.scrollY || document.documentElement.scrollTop || 0)); }catch(e){} }
+      document.addEventListener('click', function(e){
+        var t = e.target;
+        var a = t && t.closest ? t.closest('a[href*="image-viewer.html"]') : null;
+        if(a) saveY();
+      }, true);
+      function restore(){
+        try{
+          var y = sessionStorage.getItem(KEY);
+          if(y!==null && y!==''){ window.scrollTo(0, parseInt(y,10)||0); }
+        }catch(e){}
+      }
+      // bfcache返回（历史返回，页面未重载）
+      window.addEventListener('pageshow', function(ev){ if(ev.persisted) restore(); });
+      // 普通重载返回：仅当来源是查看器时恢复，正常进入主页仍在顶部
+      window.addEventListener('load', function(){
+        if(document.referrer && document.referrer.indexOf('image-viewer.html')>-1) restore();
+      });
+    })();
+  </script>
+  <script>
     function pageRange(start, end) {
       return Array.from({ length: end - start + 1 }, (_, index) => start + index);
     }
@@ -2332,7 +2354,7 @@
         category: '企业展馆',
         title: '卡塔尔农场展厅',
         desc: '为巴拉德纳乳业打造的海外农场展厅概念方案，融合在地文化与现代农业展示逻辑。',
-        file: 'content/pdf-viewer-simple.html?file=projects/qatar-farm-exhibition.pdf',
+        file: 'content/image-viewer.html?doc=qatar-farm-exhibition',
         pages: null
       },
       {
@@ -2340,7 +2362,7 @@
         category: '企业展馆',
         title: '核安盾牌·深海护航',
         desc: '719研究所核应急与辐射防护展厅，围绕核安全叙事与科技感空间体验，构建沉浸式展厅方案。',
-        file: 'content/pdf-viewer-simple.html?file=projects/nuclear-exhibition-design.pdf',
+        file: 'content/image-viewer.html?doc=nuclear-exhibition-design',
         pages: null
       },
       {
@@ -2348,7 +2370,7 @@
         category: '企业展馆',
         title: '全能武警战士·国防教育互动体验区',
         desc: '以国防教育为核心，通过互动体验装置与场景叙事，打造沉浸式武警文化教育空间。',
-        file: 'content/pdf-viewer-simple.html?file=projects/armed-police-experience.pdf',
+        file: 'content/image-viewer.html?doc=armed-police-experience',
         pages: null
       },
       {
@@ -2356,7 +2378,7 @@
         category: '企业展馆',
         title: '华中师范大学前沿交叉研究院',
         desc: '围绕研究机构的学术气质与空间识别，建立从视觉系统到场景导视的整体表达。',
-        file: 'content/pdf-viewer-simple.html?file=projects/ccnu-visual-identity.pdf',
+        file: 'content/image-viewer.html?doc=ccnu-visual-identity',
         pages: null
       },
       // 文化类展馆
@@ -2365,7 +2387,7 @@
         category: '文化展馆',
         title: '浙江大学校史馆',
         desc: '从校史叙事、空间动线与观展体验出发，重构校园文化场馆的内容组织方式。',
-        file: 'content/pdf-viewer-simple.html?file=projects/zju-history-museum.pdf',
+        file: 'content/image-viewer.html?doc=zju-history-museum',
         pages: null
       },
       {
@@ -2373,7 +2395,7 @@
         category: '文化展馆',
         title: '吴城遗址博物馆',
         desc: '商代遗址博物馆深化设计，围绕考古遗址展示与历史叙事，构建文明探源型展馆。',
-        file: 'content/pdf-viewer-simple.html?file=projects/wucheng-museum-design.pdf',
+        file: 'content/image-viewer.html?doc=wucheng-museum-design',
         pages: null
       },
       {
@@ -2381,7 +2403,7 @@
         category: '文化展馆',
         title: '黄冈民俗文化馆',
         desc: '以民俗文化为线索，梳理地方文明史、空间内容与展陈体验之间的叙事关系。',
-        file: 'content/pdf-viewer-simple.html?file=projects/huanggang-folk-museum-print.pdf',
+        file: 'content/image-viewer.html?doc=huanggang-folk-museum-print',
         pages: null
       },
       // 设计品牌类
@@ -2390,7 +2412,7 @@
         category: '设计品牌',
         title: '循香·应梦团风县政府伴手礼盒',
         desc: '以地方文化和苏轼叙事为核心，将香薰体验、包装仪式感与传播话术整合为礼盒方案。',
-        file: 'content/pdf-viewer-simple.html?file=projects/tuanfeng-gift-box.pdf',
+        file: 'content/image-viewer.html?doc=tuanfeng-gift-box',
         pages: null
       },
       {
@@ -2398,7 +2420,7 @@
         category: '设计品牌',
         title: '田博士珠宝包装',
         desc: '通过竞品研究、消费场景和高级感塑造，建立珠宝包装的视觉定位与开箱体验。',
-        file: 'content/pdf-viewer-simple.html?file=projects/dr-tian-jewelry-packaging.pdf',
+        file: 'content/image-viewer.html?doc=dr-tian-jewelry-packaging',
         pages: null
       },
       {
@@ -2406,7 +2428,7 @@
         category: '设计品牌',
         title: '地大文创品牌设计',
         desc: '围绕地质大学文创品牌，从品牌色、视觉识别到应用延展，构建完整的品牌BI系统。',
-        file: 'content/pdf-viewer-simple.html?file=projects/cug-cultural-brand.pdf',
+        file: 'content/image-viewer.html?doc=cug-cultural-brand',
         pages: null
       },
       {
@@ -2414,7 +2436,7 @@
         category: '设计品牌',
         title: '大地奇珍·矿石密语文创标本盒',
         desc: '以矿石标本为载体，将地质知识与文创产品结合，打造可收藏、可传播的文化产品。',
-        file: 'content/pdf-viewer-simple.html?file=projects/mineral-specimen-box.pdf',
+        file: 'content/image-viewer.html?doc=mineral-specimen-box',
         pages: null
       },
       {
@@ -2422,7 +2444,7 @@
         category: '设计品牌',
         title: '监利大米·区域品牌建设',
         desc: '围绕监利大米区域公用品牌，从品牌定位、视觉系统到发布会全案，构建农业区域品牌的完整表达。',
-        file: 'content/pdf-viewer-simple.html?file=projects/jianli-rice-brand-launch.pdf',
+        file: 'content/image-viewer.html?doc=jianli-rice-brand-launch',
         pages: null
       }
     ];
@@ -2460,40 +2482,17 @@
     // let activeCaseKey = 'guqin';
     // let activeCasePageIndex = 0;
     let activePoemIndex = null;
-    const pdfCache = new Map();
-
-    if (window.pdfjsLib) {
-      pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
-    }
-
     function renderProjectCards() {
       const grid = document.getElementById('projectCardGrid');
       if (!grid) return;
       grid.innerHTML = projects.map(project => `
-        <a class="project-card" href="${project.file}" target="_blank" rel="noopener">
+        <a class="project-card" href="${project.file}">
           <span class="pc-code">${project.code} · ${project.category}</span>
           <h3>${project.title}</h3>
           <p>${project.desc}</p>
           <span class="pc-arrow"><span>打开完整方案</span><span>→</span></span>
         </a>
       `).join('');
-    }
-
-    async function getPdf(caseItem) {
-      if (!window.pdfjsLib) throw new Error('PDF.js 未加载');
-      if (!pdfCache.has(caseItem.file)) {
-        pdfCache.set(caseItem.file, pdfjsLib.getDocument(caseItem.file).promise);
-      }
-      return pdfCache.get(caseItem.file);
-    }
-
-    async function getValidPages(caseItem) {
-      const pdf = await getPdf(caseItem);
-      const sourcePages = Array.isArray(caseItem.pages) && caseItem.pages.length
-        ? caseItem.pages
-        : pageRange(1, pdf.numPages);
-      const pages = sourcePages.filter(page => page >= 1 && page <= pdf.numPages);
-      return { pdf, pages };
     }
 
 //     function initCaseButtons() {

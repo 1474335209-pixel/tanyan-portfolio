@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>方案预览</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { -webkit-text-size-adjust:100%; }
+  body { background:#2b2d30; font-family:-apple-system,"PingFang SC",sans-serif; color:#fff; }
+  .bar {
+    position:fixed; top:0; left:0; right:0; height:48px; z-index:50;
+    background:rgba(34,36,39,.96); display:flex; align-items:center; gap:12px;
+    padding:0 14px; backdrop-filter:blur(8px);
+  }
+  .bar a { color:#fff; text-decoration:none; font-size:14px; padding:6px 14px; background:#45484c; border-radius:6px; white-space:nowrap; }
+  .bar .ttl { flex:1; font-size:13px; color:#ddd; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .bar .pg { font-size:13px; color:#9ecbff; min-width:52px; text-align:right; font-variant-numeric:tabular-nums; }
+  #wrap { padding:56px 0 30px; display:flex; flex-direction:column; align-items:center; }
+  .sheet {
+    width:100%; max-width:980px; position:relative; background:#3a3d41;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .sheet img { width:100%; height:auto; display:block; opacity:0; transition:opacity .25s; position:relative; z-index:2; }
+  .sheet img.show { opacity:1; }
+  .ph { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; color:#7a7e83; font-size:13px; }
+  .spinner { width:26px; height:26px; border:3px solid #555; border-top-color:#9ecbff; border-radius:50%; animation:spin .8s linear infinite; margin-bottom:8px; }
+  .ph-inner { display:flex; flex-direction:column; align-items:center; }
+  @keyframes spin { to { transform:rotate(360deg); } }
+  #firsthint { color:#bbb; text-align:center; padding:120px 20px; font-size:15px; }
+</style>
+</head>
+<body>
+<div class="bar">
+  <a href="../index.html" onclick="try{if(history.length>1){history.back();return false;}}catch(e){}">← 返回</a>
+  <div class="ttl" id="ttl">加载中…</div>
+  <div class="pg" id="pg"></div>
+</div>
+<div id="wrap"><div id="firsthint">正在打开文档…</div></div>
+
+<script src="pages/manifest.js"></script>
+<script>
+(function(){
+  var doc = new URLSearchParams(location.search).get('doc');
+  var wrap = document.getElementById('wrap');
+  var pgEl = document.getElementById('pg');
+  var ttlEl = document.getElementById('ttl');
+  if (!doc || !window.PAGE_MANIFEST || !window.PAGE_MANIFEST[doc]) {
+    document.getElementById('firsthint').textContent = '文档不存在';
+    return;
+  }
+  var info = window.PAGE_MANIFEST[doc];
+  var n = info.n, ratio = info.r;
+  var TITLES = {
+    "armed-police-experience":"“全能武警战士”国防教育互动体验区",
+    "ccnu-visual-identity":"华中师范大学前沿交叉研究院 空间与视觉识别系统",
+    "cug-cultural-brand":"地大文创品牌设计提案",
+    "dr-tian-jewelry-packaging":"田博士珠宝包装设计提案",
+    "ezhou-high-school-history":"鄂州高中校史馆设计方案",
+    "huanggang-folk-museum-print":"黄冈民俗博物馆（印刷版）",
+    "huanggang-full":"黄冈民俗文化馆（展陈大纲+多媒体策划案）",
+    "jianli-rice-brand-launch":"监利大米品牌发布会",
+    "mineral-specimen-box":"大地奇珍 · 矿石密语 文创标本盒",
+    "nuclear-exhibition-design":"核安盾牌 · 深海护航 展厅设计方案",
+    "qatar-farm-exhibition":"卡塔尔农场展厅概念方案",
+    "tuanfeng-gift-box":"循香 · 应梦 团风伴手礼盒推广方案",
+    "u1-nails-full-project":"U1 美甲品牌全案",
+    "wucheng-museum-design":"吴城遗址博物馆深化设计方案",
+    "zju-history-museum":"浙江大学校史馆设计方案"
+  };
+  document.title = (TITLES[doc]||doc) + " · 方案预览";
+  ttlEl.textContent = TITLES[doc] || doc;
+  pgEl.textContent = '1/' + n;
+
+  wrap.innerHTML = '';
+  var sheets = [];
+  for (var i = 1; i <= n; i++) {
+    var sheet = document.createElement('div');
+    sheet.className = 'sheet';
+    sheet.style.aspectRatio = (1 / ratio);  /* width/height = 1/(h/w) */
+    var ph = document.createElement('div');
+    ph.className = 'ph';
+    ph.innerHTML = '<div class="ph-inner"><div class="spinner"></div>第 '+i+' 页</div>';
+    var img = document.createElement('img');
+    img.alt = '第'+i+'页';
+    img.setAttribute('loading','lazy');
+    img.dataset.src = 'pages/' + doc + '/' + i + '.webp';
+    (function(sheet, img, ph, idx){
+      img.onload = function(){ img.classList.add('show'); ph.style.display='none'; };
+      img.onerror = function(){ ph.innerHTML = '<div class="ph-inner" style="color:#e88">第'+idx+'页加载失败，点击重试</div>';
+        ph.onclick = function(){ img.src = img.dataset.src + '?r='+Date.now(); }; };
+    })(sheet, img, ph, i);
+    sheet.appendChild(ph);
+    sheet.appendChild(img);
+    wrap.appendChild(sheet);
+    sheets.push(sheet);
+  }
+
+  // 前3页立即加载，其余懒加载
+  function loadImg(sheet){
+    var img = sheet.querySelector('img');
+    if (img && !img.src) img.src = img.dataset.src;
+  }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if (en.isIntersecting) { loadImg(en.target); }
+    });
+  }, { rootMargin: '600px 0px' });
+  sheets.forEach(function(s, idx){
+    if (idx < 3) loadImg(s); else io.observe(s);
+  });
+
+  // 当前页码追踪
+  var spy = new IntersectionObserver(function(entries){
+    var best=null;
+    entries.forEach(function(en){
+      if(en.isIntersecting){
+        if(!best || en.intersectionRatio > best.intersectionRatio) best=en;
+      }
+    });
+    if(best){ pgEl.textContent = (sheets.indexOf(best.target)+1)+'/'+n; }
+  }, { rootMargin: '-30% 0px -50% 0px', threshold:[0,.25,.5,1] });
+  sheets.forEach(function(s){ spy.observe(s); });
+})();
+</script>
+</body>
+</html>

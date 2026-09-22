@@ -1,0 +1,11 @@
+# 临时验证/生成脚本与截图（非网站文件）
+/_*.py
+/_*.png
+/_*.jpg
+/_*.log
+/_shots/
+# Word/系统临时文件
+~$*
+*.bak
+Thumbs.db
+.DS_Store
